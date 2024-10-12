@@ -1,0 +1,46 @@
+/* MessageInput.css */
+.message-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+  }
+  
+  .message-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .message-input input:focus {
+    border-color: #007bff;
+  }
+  
+  .message-input button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .message-input button:hover {
+    background-color: #0056b3;
+  }
+  
+  .message-input button:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+  }
+  
