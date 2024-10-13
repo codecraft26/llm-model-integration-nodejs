@@ -2,7 +2,7 @@
 import express from 'express';
 import { sendPrompt,saveChat,getChatHistory ,getSavedChatHistory} from '../controller/chatController.js';
 import { registerUser,loginUser,logout} from '../controller/userController.js';
-import {isAuthenticatedUser} from '../middleware/auth.js'
+import {isAuthenticatedUser,authorizeRoles} from '../middleware/auth.js'
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.post('/register', registerUser);
 router.post('/login',loginUser)
 router.get('/logout',logout)
 
-router.get('/history',isAuthenticatedUser,getChatHistory)
+router.get('/admin/history',isAuthenticatedUser,authorizeRoles('admin'),getChatHistory)
 router.get('/savedChat',isAuthenticatedUser,getSavedChatHistory)
 
 export default router;
