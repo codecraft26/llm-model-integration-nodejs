@@ -29,7 +29,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route Imports
-import chatRoutes from './routes/chatRoutes.js';
+import chatRoutes  from './routes/chatRoutes.js';
+
 // other middleware and routes
 app.use('/api/chats', chatRoutes);
 
