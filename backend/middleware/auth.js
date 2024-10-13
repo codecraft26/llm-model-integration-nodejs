@@ -11,19 +11,16 @@ dotenv.config({
 
 export const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.cookies;
-
+  
   if (!token) {
-    console.log("Token not found in cookies.");
     return next(new ErrorHander('Please Login to access this resource', 401));
   }
-
+  
   try {
     const decodedData = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decodedData.id);
-    console.log("User authenticated:", req.user);
     next();
   } catch (error) {
-    console.error("Error during token verification:", error);
     return next(new ErrorHander('Invalid token, please log in again', 401));
   }
 });

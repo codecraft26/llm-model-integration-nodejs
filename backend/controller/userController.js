@@ -55,3 +55,17 @@ export const loginUser = catchAsyncErrors(async (req, res, next) => {
     sendToken(user, 200, res);
 });
 
+export const logout = catchAsyncErrors(async (req, res, next) => {
+    // Clear the 'token' cookie to log the user out
+    res.cookie('token', null, {
+        expires: new Date(Date.now()), // Set the expiration date to now, effectively deleting it
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Secure cookies only in production
+        sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'
+    });
+
+    res.status(200).json({
+        success: true,
+        message: 'Logged out successfully'
+    });
+});

@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import rateLimit from 'express-rate-limit'; // Import the rate limiter
 import cors from 'cors';
-
+import errorMiddleware from './middleware/error.js';
 
 // Config
 if (process.env.NODE_ENV !== 'PRODUCTION') {
@@ -22,17 +22,28 @@ const limiter = rateLimit({
 // Apply the rate limiting middleware to all requests
 app.use(limiter);
 
+
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // replace with your frontend URL
+  credentials: true
+}));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
 
 // Route Imports
 import chatRoutes  from './routes/chatRoutes.js';
 
 // other middleware and routes
 app.use('/api/chats', chatRoutes);
+
+
+app.use(errorMiddleware);
 
 
 export default app;
