@@ -3,13 +3,16 @@ import React, { useState } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import './MessageInput.css';
 
-const MessageInput = () => {
+const MessageInput = ({ onSend }) => {
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
-    // Handle message sending logic
-    console.log("Message Sent:", message);
-    setMessage('');
+
+    console.log("message",message)
+    if (message.trim()) {
+      onSend(message); // Call the onSend function passed as a prop
+      setMessage('');
+    }
   };
 
   return (

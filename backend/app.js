@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 import chatRoutes  from './routes/chatRoutes.js';
 
 // other middleware and routes
-app.use('/api/chats', chatRoutes);
+app.use('/api', chatRoutes);
 
 
 app.use(errorMiddleware);
